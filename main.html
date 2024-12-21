@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarRide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F6F4F0;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #4DA1A9;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #F6F4F0;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            
+        }
+
+        .navbar ul li {
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #F6F4F0;
+            transition: color 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .navbar ul li a:hover {
+            color: #E1E1E1;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        #home {
+            background-image: url('bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #F6F4F0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            position: relative;
+            padding: 1.5rem;
+            height: 50rem;
+        }
+
+        #home .content {
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better contrast */
+            padding: 5rem;
+            border-radius: 8px;
+            text-align: center; 
+            width: 60%;
+            font-size: 2rem;
+
+        }
+
+        #home .content p{
+            font-size: 1.2rem;
+        }
+
+
+        #home button {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #F6F4F0;
+            background-color: #4DA1A9;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #home button:hover {
+            background-color: #3B838A;
+        }
+
+        #products {
+            background-color: #F6F4F0;
+            color: #333;
+        }
+
+        #products h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+            height: auto;
+            position: relative;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card .details {
+            padding: 1rem;
+            text-align: left;
+            font-size: 2rem;
+        }
+
+        .product-card .details h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #4DA1A9;
+        }
+
+        .product-card .details p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .product-card:hover {
+            opacity: 0.75;
+            transform: translateY(-10px);
+        }
+
+        .product-card .actions {
+            display: none;.blog-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+        .blog-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #F6F4F0;
+            transform: translateY(-10px);
+        }
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .product-card:hover .actions {
+            display: block;
+        }
+
+        .product-card .actions button {
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #F6F4F0;
+            background-color: #4DA1A9;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 100;
+        }
+
+        .product-card .actions button:hover {
+            background-color: #3B838A;
+        }
+
+        
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        #testimonials {
+            background-color: #FFFFFF;
+            padding: 3rem 1.5rem;
+            position: relative;
+        }
+
+        #testimonials h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial {
+            max-width: 600px;
+            background-color: #F6F4F0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .testimonial .author {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #4DA1A9;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4DA1A9;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            user-select: none;
+        }
+
+        .arrow.left {
+            left: 1rem;
+        }
+
+        .arrow.right {
+            right: 1rem;
+        }
+
+        /* Footer Styling */
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            background-color: #4DA1A9;
+            color: #F6F4F0;
+            flex-wrap: wrap;
+            margin-top: 8rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0.5rem;
+            min-width: 250px;
+            
+        }
+
+        .footer-column img {
+            width: 300px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column h3 {
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+        }
+
+        .footer-column p, .footer-column li {
+            margin: 0.3rem 0;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin: 0.5rem 0;
+        }
+
+        .newsletter {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .newsletter button {
+            padding: 0.5rem;
+            background-color: #3B838A;
+            color: #F6F4F0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 6rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter button:hover {
+            background-color: #2F6F73;
+        }
+
+        .team-section {
+            text-align: center;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .team-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">SolarRide</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sections -->
+    <section id="home">
+        <div class="content">
+            <h1>Welcome to SolarRide</h1>
+            <p>Your destination for eco-friendly and sustainable transportation solutions.</p>
+            <button>Shop Now</button>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-container">
+            
+
+            <div class="product-card">
+                <img src="cycle3.png" alt="Cycle 2">
+                <div class="details">
+                    <h3>EcoRide X</h3>
+                    <p>Charge Time: 3.5 hours</p>
+                    <p>Range: 40-50 km</p>
+                    <p>Cost: $250</p>
+                </div>
+                <div class="actions">
+                    <button>Buy Now</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="cycle1.png" alt="Cycle 1">
+                <div class="details">
+                    <h3>SolarCycle Pro</h3>
+                    <p>Charge Time: 4 hours</p>
+                    <p>Range: 60-70 km</p>
+                    <p>Cost: $600</p>
+                </div>
+                <div class="actions">
+                    <button>Buy Now</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="cycle2.jpg" alt="Cycle 3">
+                <div class="details">
+                    <h3>UrbanSolar Cruiser</h3>
+                    <p>Charge Time: 4 hours</p>
+                    <p>Range: 90-100 km</p>
+                    <p>Cost: $1300</p>
+                </div>
+                <div class="actions">
+                    <button>Buy Now</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="blog2.png" alt="Blog Post 1">
+                <div class="details">
+                    <h3>Top 5 Benefits of Electric Cycles</h3>
+                    <p>Discover how electric cycles can revolutionize your daily commute and contribute to a sustainable future.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="blog1.png" alt="Blog Post 2">
+                <div class="details">
+                    <h3>Maintaining Your Electric Cycle</h3>
+                    <p>Learn essential tips for keeping your electric cycle in top condition for years to come.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="blog3.png" alt="Blog Post 3">
+                <div class="details">
+                    <h3>Why Solar-Powered Cycles are the Future</h3>
+                    <p>Explore the potential of solar-powered cycles and their impact on eco-friendly transportation.</p>
+                </div>
+            </div>
+        </div>  </section>
+
+        <section id="testimonials">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonial-container">
+                <div class="arrow left" onclick="prevTestimonial()">&#8249;</div>
+    
+                <div class="testimonial active">
+                    <p>"The SolarCycle Pro is an absolute game-changer! I can ride for hours without worrying about charging."</p>
+                    <div class="author">- Aditi Sharma</div>
+                </div>
+    
+                <div class="testimonial">
+                    <p>"EcoRide X is perfect for my daily commute. It's affordable and super efficient."</p>
+                    <div class="author">- Rajesh Kumar</div>
+                </div>
+    
+                <div class="testimonial">
+                    <p>"I love the UrbanSolar Cruiser! It's the best investment I've made for sustainable travel."</p>
+                    <div class="author">- Priya Gupta</div>
+                </div>
+    
+                <div class="arrow right" onclick="nextTestimonial()">&#8250;</div>
+            </div>
+        </section>    
+
+    <!-- <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions? Reach out to us for more information about our products and services.</p>
+    </section> -->
+
+    <div class="team-section">
+        <h2>Our Team</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="samit.png" alt="Samit Ghosh">
+                <h3>Samit Ghosh</h3>
+                <p>Founder</p>
+            </div>
+            <div class="team-member">
+                <img src="jaspinder.png" alt="Jaspinder Kaur">
+                <h3>Jaspinder Kaur</h3>
+                <p>Co-founder</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+        <!-- Column 1 -->
+        <div class="footer-column">
+            <img src="profile.png" alt="Samit Ghosh">
+            <h3>Samit Ghosh</h3>
+            <p>Address: UPES Dehradun</p>
+            <p>Phone: +91 7076228070</p>
+            <p>Email: Samit.126192@stu.upes.ac.in</p>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-column">
+            <h3>MENU</h3>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Testimonial</li>
+                <li>Blog</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-column">
+            <h3>Account</h3>
+            <ul>
+                <li>Account</li>
+                <li>Checkout</li>
+                <li>Login</li>
+                <li>Register</li>
+                <li>Shopping</li>
+                <li>Widget</li>
+            </ul>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="footer-column">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter and get updates protidin.</p>
+            <div class="newsletter">
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        // Initial display
+        showTestimonial(currentTestimonial);
+    </script>
+
+</body>
+</html>
